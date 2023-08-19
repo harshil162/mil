@@ -1,0 +1,52 @@
+# What is Rviz and why use it?
+
+## Introduction
+According to the Robot Operating System (ROS) documentation, Rviz is a 3D visualization environment for autonomous robots. This document serves as a user guide for understanding and effectively
+using Rviz, especially helpful for Software Team Members looking to control Rviz with more purpose and direction.
+
+### Why Use Rviz?
+Visualizing the state of a robot - Rviz helps enable users to visualize the state of the robot through analyzing sensor data and analyzing the robot’s surrounding environment
+
+Configuration for visualization - Rviz can be configured for visualizing video, depth, position, and detected object information with regards to the robot in its environment. 
+
+##Installation
+Before using Rviz, make sure you have ROS installed on your system. If ROS is not yet installed, follow the official ROS installation guide for your operating system. 
+Once ROS is installed you can install Rviz using the package manager: 
+
+sudo apt-get install ros-<your-ros-distro>-rviz
+
+(Replace <your-ros-distro> with your ROS distribution (ex. hydro, noetic, etc.))
+
+## Getting Started
+To start rviz, you might have to run a line such as 
+
+source /opt/ros/<your-ros-distro>/setup.bash 
+roscore &
+rosrun rviz rviz
+
+(Replace <your-ros-distro> with your ROS distribution (ex. hydro, noetic, etc.))
+
+The command will launch an empty window and allow the user to add a display to draw something in the 3D world. 
+
+There are plenty of resources on the Internet for learning more about Rviz, but the following link is a reference to applying basic URDF and Rviz for robot manipulation:
+https://www.theconstructsim.com/ros-projects-robotic-manipulator-part-1-basic-urdf-rviz/ . 
+
+
+## Viewing robot sensor data
+### RGB Color Cameras
+The robot’s RGB color cameras are launched using the usb_cam package. To view the camera stream from the rqt rqt_image_view plugin, select from the rqt upper menu: 
+
+Plugins -> Visualization -> Image view
+And select the image you want to view from the drop down box
+
+The robot’s laser scanner driver node is hokuyo_node. The data is published through a sensor_msgs/LaserScan message under the topic /scan. 
+To view the camera stream from the rqt rqt_rviz plugin, select from the rqt upper menu: 
+Plugins -> Visualization -> Rviz
+
+To add the laserscan visualization to Rviz, press the Add button on the bottom of the left Rviz displays list window, select LaserScan under rviz folder, and press OK on the bottom of the window (Add -> LaserScan -> OK). 
+
+### GPS
+The GPS data is published through a sensor_msgs/NavSatFix message under the topic /GPS/fix. 
+
+For more information regarding the above methods to view the robot sensor data, and other methods to view the robot sensor data, please visit the following link: 
+http://wiki.ros.org/robotican/Tutorials/Read%20and%20visualize%20your%20robot%20sensors 
